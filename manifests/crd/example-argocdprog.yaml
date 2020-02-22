@@ -1,0 +1,8 @@
+apiVersion: knapps.lcostea.io/v1alpha1
+kind: Argocdprog
+metadata:
+  name: example-argocdprog
+spec:
+  apiServer: "https://localhost:8080"
+  schedule: "2020-02-22T10:10:09" #needs to be UTC
+  syncApp: "hello-world"

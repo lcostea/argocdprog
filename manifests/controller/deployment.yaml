@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-progressive
+  labels:
+    app.kubernetes.io/component: argocd-progressive-controller
+    app.kubernetes.io/name: argocd-progressive
+    app.kubernetes.io/part-of: argocd-progressive
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: argocd-progressive
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: argocd-progressive
+    spec:
+      serviceAccountName: argocd-progressive
+      containers:
+      - command:
+        - "/bin/argocdprog"
+        image: lcostea/argocdprog:latest
+        name: argocd-progressive
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "200m"
+          limits:
+            memory: "512Mi"
+            cpu: "400m"

@@ -1,0 +1,19 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: argocd-progressive-role
+  labels:
+    app.kubernetes.io/component: argocd-progressive-controller
+    app.kubernetes.io/name: argocd-progressive-role
+    app.kubernetes.io/part-of: argocd-progressive
+rules:
+- apiGroups:
+  - knapps.lcostea.io
+  resources:
+  - argocdprogs
+  verbs:
+  - get
+  - list
+  - watch
+  - update
+  - patch

@@ -1,0 +1,13 @@
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: argocdprogs.knapps.lcostea.io
+spec:
+  group: knapps.lcostea.io
+  version: v1alpha1
+  names:
+    kind: Argocdprog
+    plural: argocdprogs
+  scope: Namespaced
+  subresources:
+    status: {}
