@@ -343,8 +343,13 @@ func newSchedule(schedule string, last string) (time.Duration, error) {
 
 func executeSyncRequest(appName string, apiServer string) int {
 	syncTkn := os.Getenv("ARGOCDPROG_SYNC_TOKEN")
+	insecure := false
+	if os.Getenv("ARGOCDPROG_INSECURE_API") != "" {
+		insecure = true
+	}
+
 	tr := &http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, //because the server is using a self generated cert
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: insecure}, //because the server is using a self generated cert
 	}
 	client := http.Client{
 		Timeout:   30 * time.Second,
